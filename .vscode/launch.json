@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FraudApplication",
+            "request": "launch",
+            "mainClass": "com.amigoscode.fraud.FraudApplication",
+            "projectName": "fraud"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-CostumerApplication<customer>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
