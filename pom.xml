@@ -18,6 +18,7 @@
   <modules>   
     <module>customer</module>   
     <module>fraud</module> 
+    <module>notification</module>
   </modules>
       
   
