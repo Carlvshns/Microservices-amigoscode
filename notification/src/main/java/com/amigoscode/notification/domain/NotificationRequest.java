@@ -1,5 +1,7 @@
 package com.amigoscode.notification.domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,11 +16,20 @@ public class NotificationRequest {
 
     private String notification;
 
+    private LocalDateTime notifyTime;
+
     public Integer getId() {
         return id;
     }
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public LocalDateTime getNotifyTime() {
+        return notifyTime;
+    }
+    public void setNotifyTime(LocalDateTime notifyTime) {
+        this.notifyTime = notifyTime;
     }
 
     public String getNotification() {

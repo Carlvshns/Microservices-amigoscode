@@ -5,6 +5,7 @@ import com.amigoscode.customer.domain.CustomerRegistrationRequest;
 import com.amigoscode.customer.repository.CustomerRepository;
 import com.amigoscode.fraud.responses.FraudCheckResponse;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,5 +36,11 @@ public class CustomerService {
         if(fraudCheckResponse.getIsFraudster()){ //Aqui poderia ser pego diretamente sem o uso do getter atraves do record
             throw new IllegalStateException("fraudster");
         }
+
+        notifyCustomer();
+    }
+
+    public void notifyCustomer(){
+        restTemplate.exchange("http://localhost:8082/api/v1/notification", HttpMethod.POST, null, Void.class);
     }
 }
