@@ -15,13 +15,13 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
     private Integer id;
     private String firstName;
-    private String lastname;
+    private String lastName;
     private String email;
 
-    public Customer(Integer id, String firstName, String lastname, String email) {
+    public Customer(Integer id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
-        this.lastname = lastname;
+        this.lastName = lastName;
         this.email = email;
     }
     
@@ -42,11 +42,11 @@ public class Customer {
         this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {

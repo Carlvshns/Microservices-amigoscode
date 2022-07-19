@@ -24,7 +24,7 @@ public class CustomerService {
     public void registerCustomer(CustomerRegistrationRequest request){
         Customer customer = new Customer(); //Aqui o builder seria usado, se tivesse
         customer.setFirstName(request.getFirstName()); //Aqui poderia ser pego diretamente sem o uso do getter atraves do record
-        customer.setLastname(request.getLastname());
+        customer.setLastName(request.getLastname());
         customer.setEmail(request.getEmail());
 
         customerRepository.saveAndFlush(customer);
