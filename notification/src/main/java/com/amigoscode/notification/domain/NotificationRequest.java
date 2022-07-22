@@ -2,19 +2,11 @@ package com.amigoscode.notification.domain;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-
 public class NotificationRequest {
     
-    @Id
-    @SequenceGenerator(name = "notification_id_generator", sequenceName = "notification_id_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notification_id_sequence")
     private Integer id;
 
-    private String notification;
+    private String notificationMessage;
 
     private LocalDateTime notifyTime;
 
@@ -32,11 +24,11 @@ public class NotificationRequest {
         this.notifyTime = notifyTime;
     }
 
-    public String getNotification() {
-        return notification;
+    public String getNotificationMessage() {
+        return notificationMessage;
     }
-    public void setNotification(String notification) {
-        this.notification = notification;
+    public void setNotificationMessage(String notificationMessage) {
+        this.notificationMessage = notificationMessage;
     }
     
 }

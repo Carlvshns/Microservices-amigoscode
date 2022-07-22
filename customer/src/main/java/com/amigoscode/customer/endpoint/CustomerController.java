@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/v1/customers")
-//Aqui poderia ser utilizado record, mas estou utilizando Java 11, talvez voltarei aqui e refatorarei
 public class CustomerController {
 
     private final CustomerService customerService;

@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-//Aqui nesta classe havera um builder
 public class FraudCheckHistory {
     
     @Id
@@ -20,6 +19,13 @@ public class FraudCheckHistory {
     private Boolean isFraudster;
     private LocalDateTime createdAt;
     
+    public FraudCheckHistory(Integer id, Integer customerId, Boolean isFraudster, LocalDateTime createdAt) {
+        this.id = id;
+        this.customerId = customerId;
+        this.isFraudster = isFraudster;
+        this.createdAt = createdAt;
+    }
+
     public FraudCheckHistory() {
     }
 
@@ -49,5 +55,49 @@ public class FraudCheckHistory {
     }
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
-    }   
+    }
+
+    public static final class Builder{
+        
+        private Integer id;
+        private Integer customerId;
+        private Boolean isFraudster;
+        private LocalDateTime createdAt;
+
+        private Builder (){
+        }
+
+        public static Builder newBuilder(){
+            return new Builder();
+        }
+
+        public Builder id(Integer id){
+            this.id = id;
+            return this;
+        }
+
+        public Builder customerId(Integer customerId){
+            this.customerId = customerId;
+            return this;
+        }
+
+        public Builder isFraudster(Boolean isFraudster){
+            this.isFraudster = isFraudster;
+            return this;
+        }
+
+        public Builder createdAt(LocalDateTime createdAt){
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public FraudCheckHistory build(){
+            FraudCheckHistory fraudCheckHistory = new FraudCheckHistory();
+            fraudCheckHistory.setId(id);
+            fraudCheckHistory.setCustomerId(customerId);
+            fraudCheckHistory.setIsFraudster(isFraudster);
+            fraudCheckHistory.setCreatedAt(createdAt);
+            return fraudCheckHistory;
+        }
+    } 
 }

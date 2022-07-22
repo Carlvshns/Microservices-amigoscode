@@ -1,6 +1,7 @@
 package com.amigoscode.fraud.services;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import com.amigoscode.fraud.domain.FraudCheckHistory;
 import com.amigoscode.fraud.repository.FraudCheckHistoryRepository;
@@ -17,13 +18,14 @@ public class FraudCheckService {
     }
 
     public boolean isFraudlentCustomer(Integer customerId){
-        FraudCheckHistory fraudCheckHistory = new FraudCheckHistory(); //O Builder sera usado no lugar disto
-        fraudCheckHistory.setCustomerId(customerId);
-        fraudCheckHistory.setIsFraudster(false);
-        fraudCheckHistory.setCreatedAt(LocalDateTime.now());
-        fraudCheckHistoryRepository.save( 
-            fraudCheckHistory // Aqui usara o Builder
-        );
+        FraudCheckHistory fraudCheckHistory = FraudCheckHistory.Builder
+                                            .newBuilder()
+                                            .customerId(customerId)
+                                            .isFraudster(false)
+                                            .createdAt(LocalDateTime.now(ZoneId.systemDefault()))
+                                            .build();
+
+        fraudCheckHistoryRepository.save( fraudCheckHistory);
         return false;
     }
 }

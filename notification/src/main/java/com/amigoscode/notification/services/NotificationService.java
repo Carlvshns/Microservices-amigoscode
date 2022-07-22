@@ -3,6 +3,7 @@ package com.amigoscode.notification.services;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+import com.amigoscode.notification.domain.Notification;
 import com.amigoscode.notification.domain.NotificationRequest;
 import com.amigoscode.notification.repository.NotificationRepository;
 
@@ -18,8 +19,15 @@ public class NotificationService {
     }
 
     public void send(NotificationRequest notificationRequest){
-        notificationRequest.setNotification("Costumer Notification");
+        notificationRequest.setNotificationMessage("Costumer Notification");
         notificationRequest.setNotifyTime(LocalDateTime.now(ZoneId.systemDefault()));
-        notificationRepository.save(notificationRequest);
+
+        Notification notification = Notification.Builder
+                                                .newBuilder()
+                                                .notificationMessage(notificationRequest.getNotificationMessage())
+                                                .notifyTime(notificationRequest.getNotifyTime())
+                                                .build();
+                                                
+        notificationRepository.save(notification);
     }
 }

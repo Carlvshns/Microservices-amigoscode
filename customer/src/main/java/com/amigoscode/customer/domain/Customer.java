@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-//Aqui farei o padrao Builder
 public class Customer {
     
     @Id
@@ -54,5 +53,49 @@ public class Customer {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public static final class Builder{
+        
+        private Integer id;
+        private String firstName;
+        private String lastName;
+        private String email;
+
+        private Builder (){
+        }
+
+        public static Builder newBuilder(){
+            return new Builder();
+        }
+
+        public Builder id(Integer id){
+            this.id = id;
+            return this;
+        }
+
+        public Builder firstName(String firstName){
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder lastName(String lastName){
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder email(String email){
+            this.email = email;
+            return this;
+        }
+
+        public Customer build(){
+            Customer customer = new Customer();
+            customer.setId(id);
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setEmail(email);
+            return customer;
+        }
     }  
 }

@@ -1,14 +1,14 @@
 package com.amigoscode.customer.domain;
-//Aqui poderia ser utilizado record, mas estou utilizando Java 11, futuramente voltarei aqui e refatorarei
+
 public class CustomerRegistrationRequest {
 
     private String firstName;
-    private String lastname;
+    private String lastName;
     private String email;
     
-    public CustomerRegistrationRequest(String firstName, String lastname, String email) {
+    public CustomerRegistrationRequest(String firstName, String lastName, String email) {
         this.firstName = firstName;
-        this.lastname = lastname;
+        this.lastName = lastName;
         this.email = email;
     }
 
@@ -22,11 +22,11 @@ public class CustomerRegistrationRequest {
         this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {

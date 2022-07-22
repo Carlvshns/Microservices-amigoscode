@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-//Aqui poderia ser utilizado record, mas estou utilizando Java 11, talvez voltarei aqui e refatorarei
 public class CustomerService {
     
     private final CustomerRepository customerRepository;
@@ -22,16 +21,16 @@ public class CustomerService {
     }
 
     public void registerCustomer(CustomerRegistrationRequest request){
-        Customer customer = new Customer(); //Aqui o builder seria usado, se tivesse
-        customer.setFirstName(request.getFirstName()); //Aqui poderia ser pego diretamente sem o uso do getter atraves do record
-        customer.setLastName(request.getLastname());
-        customer.setEmail(request.getEmail());
+        Customer customer = Customer.Builder.newBuilder()
+                                            .firstName(request.getFirstName())
+                                            .lastName(request.getLastName())
+                                            .email(request.getEmail()).build();
 
-        customerRepository.saveAndFlush(customer);
+        Customer customerSaved = customerRepository.saveAndFlush(customer);
 
         FraudCheckResponse fraudCheckResponse = restTemplate.getForObject
         ("http://localhost:8081/api/v1/fraud-check/{customerId}", 
-        FraudCheckResponse.class, customer.getId());
+        FraudCheckResponse.class, customerSaved.getId());
 
         if(fraudCheckResponse.getIsFraudster()){ //Aqui poderia ser pego diretamente sem o uso do getter atraves do record
             throw new IllegalStateException("fraudster");
